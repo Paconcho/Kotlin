@@ -1,0 +1,22 @@
+package calculadora;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class CalculadoraTest {
+
+		@Test
+		public void testSumar() {
+			// 1. Arrange (Preparar)
+			Calculadora calc = new Calculadora();
+
+			// 2. Act (Actuar)
+			int resultado = calc.sumar(2, 3);
+
+			// 3. Assert (Afirmar/Validar)
+			assertEquals(5, resultado, "2 + 3 debe ser 5");
+
+		}
+	}
+
+}

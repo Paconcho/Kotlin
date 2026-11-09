@@ -1,0 +1,6 @@
+Anxela: 5
+Paco: 7
+Luis: 3
+Manuel: 3
+Duvan: 4.5
+Bruno: 10

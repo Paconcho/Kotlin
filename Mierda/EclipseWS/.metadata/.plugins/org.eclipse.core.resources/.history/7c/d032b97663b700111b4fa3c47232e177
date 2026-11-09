@@ -1,0 +1,13 @@
+package Trabajo;
+
+import java.util.ArrayList;
+
+import Clases.Alumno;
+
+public class App {
+	public static void main(String[] args) {
+		ArrayList<Coche> coches = new ArrayList<>(); 	
+		
+		
+	}
+}

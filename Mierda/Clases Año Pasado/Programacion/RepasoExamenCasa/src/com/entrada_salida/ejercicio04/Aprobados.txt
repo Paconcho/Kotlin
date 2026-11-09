@@ -1,0 +1,4 @@
+Alex,6.7
+Claudia,8.4
+Luis,7.2
+Lucia,8.6

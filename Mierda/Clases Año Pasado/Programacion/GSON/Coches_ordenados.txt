@@ -1,0 +1,20 @@
+Audi;A4;46800.0
+BMW;Serie 3;45200.0
+Citroën;C4;24350.0
+Dacia;Sandero;14900.0
+Ford;Focus;23100.0
+Honda;Civic;30100.0
+Hyundai;i30;22300.0
+Kia;Ceed;21950.0
+Mazda;CX-5;35800.0
+Mercedes;Clase C;49500.0
+Nissan;Qashqai;31200.0
+Opel;Corsa;18750.0
+Peugeot;308;27400.0
+Renault;Clio;19800.0
+Seat;León;26750.0
+Skoda;Octavia;28600.0
+Tesla;Model 3;42990.0
+Toyota;Corolla;24500.0
+Volkswagen;Golf;28900.0
+Volvo;XC40;41700.0

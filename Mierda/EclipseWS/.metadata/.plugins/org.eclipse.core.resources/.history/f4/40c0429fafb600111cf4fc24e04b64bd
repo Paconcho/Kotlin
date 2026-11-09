@@ -1,0 +1,10 @@
+package Clases;
+
+public class Alumno implements Estado{
+	String nombre;
+	int nota;
+	Estado;
+	
+
+
+}

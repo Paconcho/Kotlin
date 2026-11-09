@@ -1,0 +1,17 @@
+package Files;
+
+import java.nio.file.Path;
+import java.io.IOException;
+import java.nio.file.Files;
+
+public class App {
+	
+	final static String Ruta = "com/Files/archivo.txt";
+	
+public static void main(String[] args) throws IOException {
+	
+	Files.writeString(Path.of("mensaje.txt"),
+			"Mi primer fichero desde Java");
+	
+	}
+}

@@ -1,0 +1,72 @@
+package com.ejercicios.ejercicioClase;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+public class App {
+	public static void main(String[] args) {
+	
+		System.out.println("Elimino tabla si existe");
+		new Arbol().eliminarTabla();
+		System.out.println("Creo tabla si no existe");
+		System.out.println();
+		new Arbol().crearTabla();
+		System.out.println("Inserto árboles de prueba");
+		crearArbolesPrueba();
+		System.out.println();
+		System.out.println("Listo árboles ordenados por nombre");
+		listarArboles();
+		System.out.println();
+		System.out.println("Elimino árboles de menos de 20 metros");
+		System.out.println();
+		eliminarArbolesPorAltura(20);
+		System.out.println("Listo árboles que empiezan por 'P'.");
+		listarArbolesPorNombre("P");
+		
+	}
+	
+
+	private static void eliminarArbolesPorAltura(int altura) {
+		
+		Arbol arbolDAO = new Arbol();
+		arbolDAO.deleteByAlturaMenorQue(altura);
+	
+	}
+	
+	private static void listarArbolesPorNombre(String comienzo) {
+
+		Arbol arbolDAO = new Arbol();
+		
+	    List<Arbol> arboles = arbolDAO.getByNombreEmpiezaPor(comienzo);
+
+	    for (Arbol arbol : arboles) {
+	        System.out.println(arbol);
+	    }
+	}
+
+
+	private static void listarArboles() {
+		Arbol arbolDAO = new Arbol(); 
+		
+		List<Arbol> arboles = arbolDAO.getAll();
+
+	    for (Arbol arbol : arboles) {
+	        System.out.println(arbol);
+	    }
+		
+	}
+
+	private static void crearArbolesPrueba() {
+		Arbol arbolDAO = new Arbol(); 
+		
+		arbolDAO.saveTree( new Arbol(0, 15, "Castaño de indias", LocalDate.parse("2010-01-01")));		
+		arbolDAO.saveTree(new Arbol(0, 16, "Carballo común", LocalDate.parse("2009-04-01")));
+		arbolDAO.saveTree(new Arbol(0, 12, "Amiero", LocalDate.parse("2015-01-09")));
+		arbolDAO.saveTree(new Arbol(0, 19, "Carballo americano", LocalDate.parse("2007-05-09")));
+		arbolDAO.saveTree(new Arbol(0, 45, "Eucalipto", LocalDate.parse("2000-05-05")));
+		arbolDAO.saveTree(new Arbol(0, 21, "Pino de Julio", LocalDate.parse("2002-06-05")));
+		arbolDAO.saveTree(new Arbol(0, 26, "Pino manso", LocalDate.parse("1998-06-05")));
+
+	}
+}

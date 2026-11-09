@@ -1,0 +1,10 @@
+package Principio;
+
+public class Main2 {
+public static void main(String[] args) {
+	
+	Alumno alumno = new Alumno();
+	Alumno a = new Alumno(30, "Duvan");
+	
+	}
+}

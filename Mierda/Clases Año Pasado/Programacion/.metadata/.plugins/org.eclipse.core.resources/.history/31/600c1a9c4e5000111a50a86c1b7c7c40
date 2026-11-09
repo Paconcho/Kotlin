@@ -1,0 +1,36 @@
+package com.json5;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.gson.JsonParseException;
+
+
+public class App01 {
+	private static List<Photo> photos;
+	private static final String DIRECCION = "https://jsonplaceholder.typicode.com/photos";
+
+	public static void main(String[] args) {
+
+		cargarFotos();
+
+	}
+
+	private static void cargarFotos() {
+		photos = new ArrayList<>();
+		
+		try {
+			URL url = new URL(DIRECCION);
+			HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
+			conexion.setRequestMethod("GET");
+			
+			
+		}catch(IOException | JsonParseException e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+		
+	}
+}

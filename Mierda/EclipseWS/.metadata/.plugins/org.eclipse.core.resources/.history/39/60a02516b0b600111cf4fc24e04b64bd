@@ -1,0 +1,13 @@
+package Clases;
+
+import java.util.ArrayList;
+
+public class App {
+public static void main(String[] args) {
+	
+	ArrayList<Alumno> alumnos = new ArrayList<>();
+	alumnos.add(new Alumno("Ana", 7.5));
+	
+	
+	}
+}

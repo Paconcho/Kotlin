@@ -1,0 +1,18 @@
+package Clases;
+
+import java.io.IOException;
+import java.nio.file.Path;
+
+public class App6 {
+	public static void main(String[] args) {
+		
+		 Path ruta = Path.of("Alumnos.txt");
+		 
+		 try{
+			 
+		 }catch(Exception e) {
+			 System.out.println("Error: " + e.getMessage());
+		 }
+		
+	}
+}

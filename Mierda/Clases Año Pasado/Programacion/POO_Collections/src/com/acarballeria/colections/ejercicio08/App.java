@@ -1,0 +1,181 @@
+package com.acarballeria.colections.ejercicio08;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Scanner;
+
+public class App {
+    
+    private static ArrayList<Alumno> alumnos;
+    private static Scanner sc = new Scanner(System.in);
+    
+    public static void main(String[] args) {
+        int opcion;
+        crearListado();
+        cargarAlumnosPrueba();
+        
+        do {
+            menu();
+            opcion = escogerOpcion();
+            procesarAccion(opcion);
+        } while(opcion != 9);
+    }
+
+    private static void procesarAccion(int opcion) {
+        switch(opcion) {
+            case 1: altaAlumno(); break;
+            case 2: bajaAlumno(); break;
+            case 3: modificarAlumnos(); break;
+            case 4: listarAlumnos(); break;
+            case 5:	{
+        		Collections.sort(alumnos, new Comparator<Alumno>() {
+        			@Override
+        			public int compare(Alumno o1, Alumno o2) {
+        				return o1.getNombre().compareTo(o2.getNombre());
+        			}
+        		});
+        		System.out.println("Alumnos ordenados correctamente por nombre");
+            }
+            case 6: {
+                Collections.sort(alumnos, Comparator.comparing(Alumno::getDNI));
+                System.out.println("Ordenado por DNI.");
+            }
+            case 7: {
+                Collections.sort(alumnos, Comparator.comparing(Alumno::isPendientes).reversed());
+                System.out.println("Ordenado por pendientes.");
+            }
+            case 8: {
+            	Collections.sort(alumnos, new Comparator<Alumno>(){
+            		@Override
+            		public int compare(Alumno o1, Alumno o2) {
+            			int cicloComp = o1.getCiclo().compareToIgnoreCase(o2.getCiclo());
+            			 if (cicloComp != 0) return cicloComp;
+                         int pendientesComp = Boolean.compare(o2.isPendientes(), o1.isPendientes());
+                         if (pendientesComp != 0) return pendientesComp;
+                         return o1.getNombre().compareToIgnoreCase(o2.getNombre());
+
+            		}
+            	});
+            }
+            case 9: 
+                System.out.println("Saliendo..."); 
+                break;
+            default: 
+                System.out.println("Opción no válida");
+        }
+    }
+
+    private static int escogerOpcion() {
+        int opcion;
+        try {
+            System.out.print("Seleccione una opción: ");
+            opcion = Integer.parseInt(sc.nextLine());
+        } catch(NumberFormatException e) {
+            System.out.println("Error: debe introducir un número");
+            opcion = -1;
+        }
+        return opcion; // DEVOLVER LA VARIABLE, NO 0
+    }
+
+    private static void menu() {
+        System.out.println("\n--- MENÚ GESTIÓN DE ALUMNOS ---");
+        System.out.println("1. Alta alumno");
+        System.out.println("2. Baja alumno");
+        System.out.println("3. Modificación alumno");
+        System.out.println("4. Listado de alumnos");
+        System.out.println("5. Ordenar por nombre");
+        System.out.println("6. Ordenar por DNI");
+        System.out.println("7. Ordenar por pendientes");
+        System.out.println("8. Ordenar por ciclo, pendientes y nombre");
+        System.out.println("9. Salir");
+    }
+
+    // ... Resto de métodos (listarAlumnos, crearListado, etc.) sin cambios mayores ...
+    
+    private static void listarAlumnos() {
+        if (alumnos.isEmpty()) {
+            System.out.println("No hay alumnos en la lista.");
+        } else {
+            System.out.println("\n--- LISTADO DE ALUMNOS ---");
+            for (Alumno a : alumnos) {
+                System.out.println(a);
+            }
+        }
+    }
+
+    private static void crearListado() {
+        alumnos = new ArrayList<>();
+    }
+
+    private static void cargarAlumnosPrueba() {
+        alumnos.add(new Alumno("Xan Mosquera Pérez", "76727272F", "DAW", 1985, true));
+        alumnos.add(new Alumno("Susana Gulín Martínez", "76007285K", "ASIR", 2001, false));
+        alumnos.add(new Alumno("Ánxela Chouza Carou", "49709852J", "ASIR", 2006, false));
+        alumnos.add(new Alumno("Jorge Macías Rodríguez", "44296652W", "DAM", 1980, false));
+    }
+    
+    // Métodos vacíos para que no de error de compilación
+    private static void altaAlumno() {
+    	System.out.println("\n--- ALTA DE ALUMNO ---");
+        System.out.print("Nombre: ");
+        String nombre = sc.nextLine();
+        System.out.print("DNI: ");
+        String dni = sc.nextLine();
+        System.out.print("Ciclo: ");
+        String ciclo = sc.nextLine();
+        System.out.print("Año de nacimiento: ");
+        int anio = Integer.parseInt(sc.nextLine());
+        System.out.print("¿Tiene materias pendientes? (true/false): ");
+        boolean pendientes = Boolean.parseBoolean(sc.nextLine());
+
+        alumnos.add(new Alumno(nombre, dni, ciclo, anio, pendientes));
+        System.out.println("Alumno dado de alta correctamente.");
+    	
+    }
+    private static void bajaAlumno() {
+    	System.out.print("\nIntroduce el DNI del alumno a dar de baja: ");
+        String dni = sc.nextLine();
+        Alumno alumnoEncontrado = null;
+
+        for (Alumno a : alumnos) {
+            if (a.getDNI().equalsIgnoreCase(dni)) {
+                alumnoEncontrado = a;
+                break;
+            }
+        }
+
+        if (alumnoEncontrado != null) {
+            alumnos.remove(alumnoEncontrado);
+            System.out.println("Alumno eliminado con éxito.");
+        } else {
+            System.out.println("No se encontró ningún alumno con ese DNI.");
+        }
+    }
+    private static void modificarAlumnos() {
+    	System.out.print("\nIntroduce el DNI del alumno a modificar: ");
+        String dni = sc.nextLine();
+        
+        for (Alumno a : alumnos) {
+            if (a.getDNI().equalsIgnoreCase(dni)) {
+                System.out.println("Datos actuales: " + a);
+                
+                System.out.print("Nuevo nombre (deja vacío para no cambiar): ");
+                String nombre = sc.nextLine();
+                if (!nombre.isEmpty()) a.setNombre(nombre);
+                
+                System.out.print("Nuevo ciclo (deja vacío para no cambiar): ");
+                String ciclo = sc.nextLine();
+                if (!ciclo.isEmpty()) a.setCiclo(ciclo);
+                
+                System.out.print("¿Tiene pendientes? (si/no): ");
+                String pend = sc.nextLine();
+                if (!pend.isEmpty()) a.setPendientes(pend.equalsIgnoreCase("si"));
+                
+                System.out.println("Alumno actualizado.");
+                return;
+            }
+        }
+        System.out.println("Alumno no encontrado.");
+    }
+}

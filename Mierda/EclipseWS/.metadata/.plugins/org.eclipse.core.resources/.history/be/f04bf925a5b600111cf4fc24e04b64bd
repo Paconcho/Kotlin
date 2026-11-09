@@ -1,0 +1,22 @@
+package Files;
+
+import java.nio.file.Path;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+
+public class App {
+	
+	final static String ruta = "com/Files/archivo.txt";
+	
+public static void main(String[] args) throws IOException {
+	
+	try(BufferedWriter bw = new BufferedWriter(new FileWriter(ruta))){
+		bw.write("Hola que tal");
+	}catch (Exception e) {
+		System.out.println("Error: " + e.getMessage());
+	}
+	
+	}
+}

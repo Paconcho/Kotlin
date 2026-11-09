@@ -1,0 +1,31 @@
+package Principio;
+
+import java.io.IOError;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+
+public class Ejercicio5 {
+	public static void main(String[] args) throws IOException {
+		
+	ArrayList<Alumno2> alumnos = new ArrayList<>();
+
+	Alumno2 a1 = new Alumno2("Ana", 20, 4.4);
+	Alumno2 a2 = new Alumno2("Pedro", 13, 9.1);
+	Alumno2 a3 = new Alumno2("Paco", 42, 6.3);
+
+	alumnos.add(a1);
+	alumnos.add(a2);
+	alumnos.add(a3);
+
+	String texto = "";
+	
+	for(Alumno2 alumno : alumnos) {
+			texto  += alumno.getNombre() + " - " + alumno.getNota();
+			System.out.println(alumno);
+		
+	 }
+	Files.writeString(Path.of("suspensos.txt"), texto);
+   }
+}

@@ -1,0 +1,5 @@
+SERVER:10.10.32.7
+PORT:3306
+BD:bosque
+USER:root
+PASSWORD:abc123.

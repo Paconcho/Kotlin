@@ -1,0 +1,22 @@
+package Trabajo;
+
+import java.util.ArrayList;
+
+import Clases.Alumno;
+
+public class App {
+	public static void main(String[] args) {
+		ArrayList<Coche> coches = new ArrayList<>(); 	
+		
+		coches.add(new Coche("Wolkswagen", 110, 3));
+		coches.add(new Coche("Peugeot", 60, 5));
+		coches.add(new Coche("Skoda", 230, 3));
+		
+		for(Coche c : coches) {
+			if(c.getCaballos() < 100) {
+			System.out.println(c);
+			}
+		}
+		
+	}
+}

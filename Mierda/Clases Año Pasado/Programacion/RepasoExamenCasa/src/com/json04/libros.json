@@ -1,0 +1,39 @@
+[
+  {
+    "titulo": "Hola que tal?",
+    "autores": [
+      {
+        "nombre": "Pepe",
+        "nacionalidad": "Española"
+      }
+    ],
+    "anio": 1999,
+    "precio": 16.99
+  },
+  {
+    "titulo": "Bien?",
+    "autores": [
+      {
+        "nombre": "Manuel",
+        "nacionalidad": "Galega"
+      },
+      {
+        "nombre": "Coautor Exemplo",
+        "nacionalidad": "Portuguesa"
+      }
+    ],
+    "anio": 2000,
+    "precio": 18.99
+  },
+  {
+    "titulo": "Mal?",
+    "autores": [
+      {
+        "nombre": "Paco",
+        "nacionalidad": "Arxentina"
+      }
+    ],
+    "anio": 2001,
+    "precio": 20.99
+  }
+]

@@ -1,0 +1,23 @@
+package Clases;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+
+public class App4 {
+	public static void main(String[] args) throws IOException {
+
+		Path ruta = Path.of("alumnos.txt");
+		int totalSuspensos = 0;
+		List<String> lineas = Files.readAllLines(ruta);
+		for (String linea : lineas) {
+			if (linea.contains("SUSPENSO")) {
+				System.out.println(linea);
+				totalSuspensos++;
+			}
+		}
+		System.out.println("Total de suspensos: " + totalSuspensos);
+
+	}
+}

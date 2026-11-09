@@ -1,0 +1,34 @@
+package Clases;
+
+public class Alumno implements Estado{
+	String nombre;
+	int nota;
+	Estado estado;
+	
+	public Alumno(String nombre, int nota) {
+		super();
+		this.nombre = nombre;
+		this.nota = nota;
+	}
+	
+	public Alumno() {
+		super();
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	public int getNota() {
+		return nota;
+	}
+	
+	public void setNota(int nota) {
+		this.nota = nota;
+	}
+
+}

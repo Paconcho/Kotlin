@@ -1,0 +1,87 @@
+import java.io.Serializable;
+
+public class EstadoPartida implements Serializable {
+    // 1. El tablero (puede ser un array de 8x8 de Strings, ints o tu clase Ficha)
+    // Usamos String para este ejemplo: "N" (negra), "B" (blanca), "DN" (dama negra), "DB" (dama blanca), " " (vacío)
+    private String[][] tablero;
+    
+    // 2. El contexto del juego
+    private String turnoActual; // "Blancas" o "Negras"
+    private boolean partidaTerminada;
+    
+    // Constructor
+    public EstadoPartida(String[][] tablero, String turnoActual, boolean partidaTerminada) {
+        this.tablero = tablero;
+        this.turnoActual = turnoActual;
+        this.partidaTerminada = partidaTerminada;
+    }
+
+    // Getters y Setters (necesarios para que las librerías lean los datos)
+    public String[][] getTablero() { return tablero; }
+    public String getTurnoActual() { return turnoActual; }
+    public boolean isPartidaTerminada() { return partidaTerminada; }
+}
+
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+
+public class GuardadoEspecial {
+
+    public static void guardarPartida(EstadoPartida estado, String nombreArchivo) {
+        try (FileOutputStream fileOut = new FileOutputStream(nombreArchivo);
+             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+            
+            out.writeObject(estado);
+            System.out.println("¡Partida guardada clavada en " + nombreArchivo + "!");
+            
+        } catch (IOException e) {
+            System.out.println("Error al guardar la partida: " + e.getMessage());
+        }
+    }
+}
+
+
+
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.io.IOException;
+
+public class CargaEspecial {
+
+    public static EstadoPartida cargarPartida(String nombreArchivo) {
+        EstadoPartida estado = null;
+        try (FileInputStream fileIn = new FileInputStream(nombreArchivo);
+             ObjectInputStream in = new ObjectInputStream(fileIn)) {
+            
+            estado = (EstadoPartida) in.readObject();
+            System.out.println("¡Partida cargada con éxito!");
+            
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error al cargar la partida: " + e.getMessage());
+        }
+        return estado;
+    }
+}
+
+// Imagina que esto pasa dentro de tu clase de juego principal
+String[][] tableroActual = obtenerMatrizTablero(); // Tu método para sacar el 8x8 actual
+String turno = "Negras"; // De quién es el turno ahora mismo
+
+// Creamos el "paquete" con la foto fija de la partida
+EstadoPartida fotoPartida = new EstadoPartida(tableroActual, turno, false);
+
+// Lo quemamos en el disco
+GuardadoEspecial.guardarPartida(fotoPartida, "partida_guardada.damas");
+
+// Cargamos el paquete
+EstadoPartida partidaRecuperada = GuardadoEspecial.cargarPartida("partida_guardada.damas");
+
+if (partidaRecuperada != null) {
+    // Aquí le pasas los datos recuperados a tus variables de juego reales
+    this.tablero = partidaRecuperada.getTablero();
+    this.turnoActual = partidaRecuperada.getTurnoActual();
+    
+    // Código para redibujar la interfaz gráfica con el nuevo tablero
+    actualizarInterfazVisual(); 
+}

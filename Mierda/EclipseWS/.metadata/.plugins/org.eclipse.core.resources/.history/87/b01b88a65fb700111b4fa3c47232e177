@@ -1,0 +1,12 @@
+package Clases;
+
+import java.io.IOException;
+import java.nio.file.Path;
+
+public class App5 {
+public static void main(String[] args) throws IOExceptionO {
+	Path ruta = Path.of("alumnos.txt");
+	
+	
+	}
+}

@@ -1,0 +1,20 @@
+package Clases;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+public class App6 {
+	public static void main(String[] args) {
+		
+		 Path ruta = Path.of("Alumnos.txt");
+		 
+		 try{
+			 String contenido = Files.readString(ruta);
+			 System.out.println(contenido);
+		 }catch(Exception e) {
+			 System.out.println("Error: No se a podido leer");
+		 }
+		
+	}
+}

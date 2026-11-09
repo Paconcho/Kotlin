@@ -1,0 +1,28 @@
+package Clases;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+
+public class App {
+public static void main(String[] args) throws Exception {
+	
+	ArrayList<Alumno> alumnos = new ArrayList<>();
+	alumnos.add(new Alumno("Ana", 7));
+	alumnos.add(new Alumno("Pepe", 4));
+	alumnos.add(new Alumno("Juan", 3));
+	
+	String texto = "";
+	for(Alumno a : alumnos) {
+		String estado;
+		if(a.getNota() >= 5) {
+			estado = "APROBADO";
+		}else {
+			estado = "SUSPENSO";
+		}
+		texto += a.getNombre() + " - " + a.getNota() + " : " + estado + "\n";
+	}
+	Files.writeString(Path.of("alumnos.txt"), texto);
+	String hola = Files.readString(Path.of("alumnos.txt"));
+	}
+}

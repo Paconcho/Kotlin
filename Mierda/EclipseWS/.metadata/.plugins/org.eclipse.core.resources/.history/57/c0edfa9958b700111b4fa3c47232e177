@@ -1,0 +1,17 @@
+package Clases;
+
+import java.util.ArrayList;
+
+public class App2 {
+	public static void main(String[] args) {
+		ArrayList<Alumno> alumnos = new ArrayList<>(); 	
+		
+		alumnos.add(new Alumno("Ana", 27));
+		alumnos.add (new Alumno("Luis", 4.0));
+		alumnos.add (new Alumno("Marta", 8.2));
+		alumnos.add (new Alumno("Pablo", 3.5));
+		
+		
+		
+	}
+}

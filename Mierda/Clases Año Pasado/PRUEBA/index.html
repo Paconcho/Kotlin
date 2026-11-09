@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tarea jQuery - Login</title>
+    <link rel="stylesheet" href="css/css.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/js.js" defer></script>
+</head>
+<body>
+
+    <div class="contenedor-principal">
+        <div id="mensaje" style="display: none;"></div>
+
+        <div class="navegacion">
+            <button id="btnLogin">Iniciar Sesión</button>
+            <button id="btnRegistro">Registrarse</button>
+            <button id="btnRecuperar">Recuperar Contraseña</button>
+        </div>
+
+        <form id="formLogin" class="activo">
+            <h2>Iniciar Sesión</h2>
+            <div class="campo">
+                <label>Email:</label>
+                <input type="email" id="loginEmail" placeholder="correo@ejemplo.com">
+            </div>
+            <div class="campo">
+                <label>Contraseña:</label>
+                <input type="password" id="loginPassword" placeholder="Tu contraseña">
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
+
+        <form id="formRegistro">
+            <h2>Formulario de Registro</h2>
+            <div class="campo">
+                <label>Nombre:</label>
+                <input type="text" id="regNombre" placeholder="Tu nombre">
+            </div>
+            <div class="campo">
+                <label>Email:</label>
+                <input type="email" id="regEmail" placeholder="correo@ejemplo.com">
+            </div>
+            <div class="campo">
+                <label>Contraseña:</label>
+                <input type="password" id="regPassword" placeholder="Crea una contraseña">
+            </div>
+			<div class="campo">
+        <label>Comunidad Autónoma:</label>
+            <select id="comunidad">
+        <option value="">Selecciona una comunidad</option>
+        <option value="galicia">Galicia</option>
+        <option value="madrid">Madrid</option>
+        <option value="andalucia">Andalucía</option>
+        <option value="aragon">Aragón</option>
+        <option value="asturias">Asturias</option>
+        <option value="baleares">Islas Baleares</option>
+        <option value="canarias">Canarias</option>
+        <option value="cantabria">Cantabria</option>
+        <option value="castillalamancha">Castilla-La Mancha</option>
+        <option value="castillayleon">Castilla y León</option>
+        <option value="cataluna">Cataluña</option> <option value="valencia">Comunidad Valenciana</option>
+        <option value="extremadura">Extremadura</option>
+        <option value="larioja">La Rioja</option>
+        <option value="navarra">Navarra</option>
+        <option value="paisvasco">País Vasco</option>
+        <option value="murcia">Región de Murcia</option>
+         </select>
+    </div>
+
+    <div class="campo">
+        <label>Provincia:</label>
+        <select id="provincia">
+            <option value="">Selecciona primero una comunidad</option>
+        </select>
+    </div>
+            <button type="submit">Registrarse</button>
+        </form>
+
+        <form id="formRecuperar">
+            <h2>Recuperar Contraseña</h2>
+            <div class="campo">
+                <label>Email:</label>
+                <input type="email" id="recEmail" placeholder="correo@ejemplo.com">
+            </div>
+            <button type="submit">Enviar Contraseña</button>
+        </form>
+    </div>
+</body>
+</html>

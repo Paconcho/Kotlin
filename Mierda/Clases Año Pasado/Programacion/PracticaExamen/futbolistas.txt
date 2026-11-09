@@ -1,0 +1,30 @@
+Messi#10#10.95
+Cristiano Ronaldo#7#11.10
+Neymar#10#10.98
+Mbappe#7#10.88
+Haaland#9#11.18
+Vinicius#7#11.05
+Bellingham#5#11.10
+Pedri#8#11.45
+Griezmann#7#11.15
+Salah#11#10.95
+Rashford#10#10.85
+Leao#10#10.80
+Dembele#11#10.75
+Valverde#15#11.25
+Rodrygo#11#11.00
+Saka#7#11.35
+Musiala#42#11.40
+De Bruyne#17#11.60
+Bruno Fernandes#8#11.55
+Joao Felix#14#11.22
+Ferran Torres#11#11.33
+Ansu Fati#10#11.28
+Grealish#10#11.70
+Foden#47#11.12
+Declan Rice#41#11.65
+Gavi#6#11.50
+Luis Diaz#7#11.08
+Osimhen#9#11.02
+Kane#9#11.30
+Son#7#10.92

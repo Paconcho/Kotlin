@@ -1,0 +1,27 @@
+package Clases;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+
+public class App2 {
+	public static void main(String[] args) throws IOException {
+		ArrayList<Alumno> alumnos = new ArrayList<>(); 	
+		
+		alumnos.add(new Alumno("Ana", 27));
+		alumnos.add(new Alumno("Luis", 4));
+		alumnos.add(new Alumno("Marta", 8));
+		alumnos.add(new Alumno("Pablo", 3));
+		
+		String texto_aprobado = "";
+		String texto_suspense = "";
+		
+		for(Alumno a : alumnos) {
+			if(a.getNota() < 5) {
+				texto_aprobado += a.getNombre() + " - " + a.getNota();
+			}
+		}
+		Files.writeString(Path.of("aprobados.txt"), texto_aprobado);
+	}
+}

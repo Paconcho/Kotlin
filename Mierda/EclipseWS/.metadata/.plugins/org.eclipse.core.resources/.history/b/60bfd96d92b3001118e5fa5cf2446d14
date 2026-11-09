@@ -1,0 +1,15 @@
+package Principio;
+
+public class Compra {
+	public static void main(String[] args) {
+		
+		String producto = "Cuaderno";
+		double precio = 2.5;
+		int cantidad = 3;
+		
+		double total = precio * cantidad;
+		
+		System.out.printf("Producto: " + producto + " \n: ", "Precio: " + precio + "\n: ", "Cantidad: " + cantidad + "\n:" + "Total: " + total);
+		
+	}
+}	

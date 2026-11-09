@@ -1,0 +1,11 @@
+package Clases;
+
+public class App {
+public static void main(String[] args) {
+	
+	ArrayList<Alumno> alumnos = new ArrayList<>();
+	
+	
+	
+	}
+}

@@ -1,0 +1,13 @@
+package Files;
+
+import java.nio.file.Path;
+import java.nio.file.Files;
+
+public class App {
+public static void main(String[] args) {
+	Files.writeString(Path.of("mensaje.txt"),
+			"Mi primer fichero desde Java");
+		
+	
+}
+}

@@ -1,0 +1,277 @@
+package com.ejercicios.ejercicioClase;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.ejercicios.ejercicio06.Arbol;
+import com.ejercicios.ejercicio06.ConexionBD;
+
+public class Usuario {
+	int id;
+	String email;
+	String nombre;
+	String password;
+	LocalDate fechaNacimiento;
+
+	public Usuario() {
+		super();
+		this.id = id;
+		this.email = email;
+		this.nombre = nombre;
+		this.password = password;
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public LocalDate getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return String.format("Usuario [id=%s, email=%s, nombre=%s, fechaNacimiento=%s]", id, email, nombre, fechaNacimiento);
+	}
+
+	public void crearTabla() {
+
+		Connection con = ConexionBD.conectar();
+		String sql;
+
+		// """ indica text-block
+		try {
+			sql = """
+					CREATE TABLE IF NOT EXISTS usuario(
+								id INT AUTO_INCREMENT PRIMARY KEY,
+								email VARCHAR(20) NOT NULL,
+								nombre VARCHAR(30) NOT NULL,
+								password VARCHAR(30) NOT NULL,
+								fecha_fechaNacimiento DATE NULL
+								 )
+					""";
+			
+			PreparedStatement st = con.prepareStatement(sql);
+			st.executeUpdate(sql);
+			ConexionBD.desconectar(con);
+		} catch (SQLException e) {
+			System.out.println("Error en CrearTabla: " + e.getMessage());
+
+		}
+
+	}
+
+	public void eliminarTabla() {
+		Connection con = ConexionBD.conectar();
+		String sql;
+
+		// """ indica text-block
+		try {
+			sql = """
+					DROP TABLE IF EXISTS usuario
+					""";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.executeUpdate(sql);
+			ConexionBD.desconectar(con);
+		} catch (SQLException e) {
+			System.out.println("Error en EliminarTabla: " + e.getMessage());
+
+		}
+
+	}
+	
+	public void getUsuario(int id) {
+		Connection con = ConexionBD.conectar();
+		String sql;
+		
+		try {
+			sql = """
+					SELECT id = ?
+					FROM usuario
+			""";
+			 
+			PreparedStatement st = con.prepareStatement(sql);
+			st.executeUpdate(sql);
+			ConexionBD.desconectar(con);
+		}catch(SQLException e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+	}
+	
+	public ArrayList<Usuario> getAll() {
+
+		Connection con = ConexionBD.conectar();
+		String sql;
+		ArrayList<Usuario> lista = new ArrayList();
+		Usuario u;
+
+		try {
+			sql = """
+					SELECT id, email, nombre, password,   fechaNacimiento
+					FROM usuario
+					ORDER BY nombre
+					""";
+			
+			PreparedStatement st = con.prepareStatement(sql);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				u = new Usuario();
+				u.setId(rs.getInt("id"));
+				u.setEmail(rs.getString("email"));
+				u.setNombre(rs.getString("nombre"));
+				u.setPassword(rs.getString("password"));
+				Date fechaNacimiento = rs.getDate("fecha nacimiento");
+				if (fechaNacimiento != null) {
+					u.setFechaPlantacion(fechaNacimiento.toLocalDate());
+				}
+
+				lista.add(u);
+			}
+
+			ConexionBD.desconectar(con);
+		} catch (SQLException e) {
+			System.out.println("Error en GetAll: " + e.getMessage());
+
+		}
+		ConexionBD.desconectar(con);
+		return lista;
+
+	}
+
+	public void saveTree(Usuario user) {
+
+		Connection con = ConexionBD.conectar();
+		String sql;
+
+		try {
+			sql = """
+					INSERT INTO arbol(altura, nombre, fecha_plantacion)
+					VALUES(?, ?, ?)
+					""";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, user.getAltura());
+			st.setString(2, arbol.getNombre());
+
+			// st.setDate(3, Date.valueOf(arbol.getFechaPlantacion()));
+			if (arbol.getFechaPlantacion() != null) {
+				st.setDate(3, Date.valueOf(arbol.getFechaPlantacion()));
+			} else {
+				st.setNull(3, Types.DATE);
+			}
+
+			st.executeUpdate();
+			ConexionBD.desconectar(con);
+		} catch (SQLException e) {
+			System.out.println("Error en saveTree: " + e.getMessage());
+
+		}
+		ConexionBD.desconectar(con);
+
+	}
+
+	
+
+	public void deleteByAlturaMenorQue(int altura) {
+		Connection con = ConexionBD.conectar();
+		String sql;
+
+		try {
+			sql = """
+					DELETE
+					FROM arbol
+					WHERE altura < ?
+					""";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, altura);
+			st.executeUpdate();
+			ConexionBD.desconectar(con);
+		} catch (SQLException e) {
+			System.out.println("Error en deleteByAlturaMenorQue: " + e.getMessage());
+
+		}
+		ConexionBD.desconectar(con);
+
+	}
+
+	public List<Arbol> getByNombreEmpiezaPor(String comienzo) {
+
+		Connection con = ConexionBD.conectar();
+		String sql;
+		ArrayList<Arbol> lista = new ArrayList();
+		Arbol a;
+
+		try {
+			sql = """
+					SELECT id, altura, nombre, fecha_plantacion
+					FROM arbol
+					WHERE nombre LIKE ?
+					ORDER BY nombre
+					""";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, comienzo + "%");
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				a = new Arbol();
+				a.setId(rs.getInt("id"));
+				a.setNombre(rs.getString("nombre"));
+				a.setAltura(rs.getInt("altura"));
+				Date fecha = rs.getDate("fecha_plantacion");
+				if (fecha != null) {
+					a.setFechaPlantacion(fecha.toLocalDate());
+				}
+
+				lista.add(a);
+			}
+
+			ConexionBD.desconectar(con);
+		} catch (SQLException e) {
+			System.out.println("Error en getByNombreEmpiezaPor: " + e.getMessage());
+
+		}
+		ConexionBD.desconectar(con);
+		return lista;
+	}
+}

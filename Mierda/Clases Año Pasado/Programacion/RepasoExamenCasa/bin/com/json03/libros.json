@@ -1,0 +1,26 @@
+[
+  {
+    "titulo": "Hola que tal?",
+    "autor": [
+      "Pepe"
+    ],
+    "anio": 1999,
+    "precio": 16.99
+  },
+  {
+    "titulo": "Bien?",
+    "autor": [
+      "Manuel"
+    ],
+    "anio": 2000,
+    "precio": 18.99
+  },
+  {
+    "titulo": "Mal?",
+    "autor": [
+      "Paco"
+    ],
+    "anio": 2001,
+    "precio": 20.99
+  }
+]

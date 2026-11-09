@@ -1,0 +1,28 @@
+private static void cargarConfiguracion() {
+    String linea;
+    String[] partes;
+
+    // Cambiamos getResourceAsStream por FileReader para leer la ruta absoluta
+    try (java.io.FileReader fr = new java.io.FileReader(RUTA);
+         BufferedReader br = new BufferedReader(fr)) {
+        
+        while ((linea = br.readLine()) != null) {
+            partes = linea.split(":");
+            if (partes.length != 2) {
+                continue;
+            }
+            String clave = partes[0].trim();
+            String valor = partes[1].trim();
+
+            switch (clave) {
+                case "SERVER": host = valor; break;
+                case "PORT": port = valor; break;
+                case "BD": bd = valor; break;
+                case "USER": user = valor; break;
+                case "PASSWORD": password = valor; break;
+            }
+        }
+    } catch (IOException e) {
+        System.out.println("Error leyendo configuración de conexión: " + e.getMessage());
+    }
+}

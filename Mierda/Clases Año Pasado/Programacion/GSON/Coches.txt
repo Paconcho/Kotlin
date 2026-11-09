@@ -1,0 +1,20 @@
+Toyota;Corolla;24500
+Volkswagen;Golf;28900
+Ford;Focus;23100
+Seat;León;26750
+Renault;Clio;19800
+Peugeot;308;27400
+BMW;Serie 3;45200
+Audi;A4;46800
+Mercedes;Clase C;49500
+Hyundai;i30;22300
+Kia;Ceed;21950
+Nissan;Qashqai;31200
+Dacia;Sandero;14900
+Skoda;Octavia;28600
+Opel;Corsa;18750
+Mazda;CX-5;35800
+Tesla;Model 3;42990
+Volvo;XC40;41700
+Citroën;C4;24350
+Honda;Civic;30100

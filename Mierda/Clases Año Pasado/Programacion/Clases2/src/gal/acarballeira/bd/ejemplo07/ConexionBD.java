@@ -1,0 +1,85 @@
+package gal.acarballeira.bd.ejemplo07;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class ConexionBD {
+
+	private static final String RUTA = "/gal/acarballeira/bd/ejemplo07/datosConexion";
+	private static String host;
+	private static String port;
+	private static String bd;
+	private static String user;
+	private static String password;
+	//Para evitar cargar la Configuración más de una vez
+	private static boolean configuracionCargada = false;
+
+	private static void cargarConfiguracion() {
+		String linea;
+		String[] partes;
+
+		try (InputStream is = ConexionBD.class.getResourceAsStream(RUTA);
+				BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+			while ((linea = br.readLine()) != null) {
+				partes = linea.split(":");
+				if (partes.length != 2) {
+					continue;
+				}
+				String clave = partes[0].trim();
+				String valor = partes[1].trim();
+
+				switch (clave) {
+				case "SERVER":
+					host = valor;
+					break;
+				case "PORT":
+					port = valor;
+					break;
+				case "BD":
+					bd = valor;
+					break;
+				case "USER":
+					user = valor;
+					break;
+				case "PASSWORD":
+					password = valor;
+					break;
+				}
+			}//while
+		} catch (NullPointerException | IOException e) {
+			System.out.println("Error leyendo configuración de conexión: " + e.getMessage());
+		}
+	}
+
+	public static Connection conectar() {
+
+		Connection conexion = null;	
+		if(!configuracionCargada) {
+			cargarConfiguracion();
+			configuracionCargada = true;
+		}
+
+		String cadenaConexion = "jdbc:mariadb://" + host + ":" + port + "/" + bd;
+		try {
+			conexion = DriverManager.getConnection(cadenaConexion, user, password);
+		} catch (SQLException e) {
+			System.out.println("Error conectando con base de datos: " + e.getMessage());
+		}
+		return conexion;
+	}
+
+	public static void desconectar(Connection con) {
+
+		try {
+			con.close();
+		} catch (SQLException e) {
+			System.out.println("Error desconectando de base de datos: " + e.getMessage());
+		}
+	}
+
+}

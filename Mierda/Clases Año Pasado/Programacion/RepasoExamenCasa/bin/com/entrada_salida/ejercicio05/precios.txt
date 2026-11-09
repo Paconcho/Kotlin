@@ -1,0 +1,6 @@
+Monitor,120.5
+teclado,13
+mouse,54.4
+pc,1500.3
+altavoz,1500
+alfombrilla,21

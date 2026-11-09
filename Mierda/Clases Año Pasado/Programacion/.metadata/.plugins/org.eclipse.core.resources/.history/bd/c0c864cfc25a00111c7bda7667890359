@@ -1,0 +1,71 @@
+package com.ejercicios.ejercicioClase;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+public class App {
+    public static void main(String[] args) {
+        
+        System.out.println("Elimino tabla usuario si existe...");
+        new Usuario().eliminarTabla();
+        
+        System.out.println("Creo tabla usuario si no existe...\n");
+        new Usuario().crearTabla();
+        
+        System.out.println("Inserto usuarios de prueba...\n");
+        crearUsuariosPrueba();
+        
+        System.out.println("Listo usuarios ordenados por nombre:");
+        listarUsuarios();
+        System.out.println();
+        
+        System.out.println("Elimino el usuario con ID: 3...");
+        eliminarUsuarioPorId(3);
+        System.out.println();
+        
+        System.out.println("Listo usuarios tras la eliminación:");
+        listarUsuarios();
+        System.out.println();
+        
+        System.out.println("Probando comprobación de credenciales:");
+        probarCredenciales("ana@email.com", "clave456"); // Debería ser correcto
+        probarCredenciales("ana@email.com", "passwordIncorrecto"); // Debería fallar
+        
+    }
+
+    private static void crearUsuariosPrueba() {
+        Usuario usuarioDAO = new Usuario(); 
+        
+        // El ID no se pasa en el constructor ya que la base de datos lo genera con AUTO_INCREMENT
+        usuarioDAO.save(new Usuario("juan@email.com", "Juan Pérez", "123456", LocalDate.parse("1995-03-15")));
+        usuarioDAO.save(new Usuario("ana@email.com", "Ana Gómez", "clave456", LocalDate.parse("1990-08-22")));
+        usuarioDAO.save(new Usuario("carlos@email.com", "Carlos Ruiz", "qwerty", LocalDate.parse("2000-11-05")));
+        usuarioDAO.save(new Usuario("marta@email.com", "Marta López", "marta2026", LocalDate.parse("1988-05-30")));
+    }
+
+    private static void listarUsuarios() {
+        Usuario usuarioDAO = new Usuario(); 
+        ArrayList<Usuario> usuarios = usuarioDAO.getAll();
+
+        for (Usuario u : usuarios) {
+            System.out.println(u);
+        }
+    }
+
+    private static void eliminarUsuarioPorId(int id) {
+        Usuario usuarioDAO = new Usuario();
+        usuarioDAO.eliminarUsuario(id);
+        System.out.println("Usuario con ID " + id + " eliminado.");
+    }
+
+    private static void probarCredenciales(String email, String password) {
+        Usuario usuarioDAO = new Usuario();
+        boolean loginCorrecto = usuarioDAO.comprobarCredenciales(email, password);
+        
+        if (loginCorrecto) {
+            System.out.println(" -> Login EXITOSO para: " + email);
+        } else {
+            System.out.println(" -> Login FALLIDO para: " + email);
+        }
+    }
+}

@@ -1,0 +1,14 @@
+package Clases;
+
+import java.util.Scanner;
+
+public class App3 {
+public static void main(String[] args) {
+	Scanner sc = new Scanner(System.in);
+	
+	System.out.print("Introduce el nombre del alumno: ");
+		String nombre = sc.nextLine();
+	
+	
+	}
+}

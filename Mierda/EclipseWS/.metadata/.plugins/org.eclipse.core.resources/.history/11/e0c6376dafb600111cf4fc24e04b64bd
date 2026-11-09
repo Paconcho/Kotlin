@@ -1,0 +1,44 @@
+package Clases;
+
+public class Alumno {
+	String nombre;
+	int nota;
+	String estado;
+	
+	public Alumno(String nombre, int nota, String estado) {
+		super();
+		this.nombre = nombre;
+		this.nota = nota;
+		this.estado = estado;
+	}
+	
+	public Alumno() {
+		super();
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	public int getNota() {
+		return nota;
+	}
+	
+	public void setNota(int nota) {
+		this.nota = nota;
+	}
+	
+	public String getEstado() {
+		return estado;
+	}
+	
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
+	
+}

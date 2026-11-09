@@ -1,0 +1,42 @@
+package Clases;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.Scanner;
+
+public class App3 {
+public static void main(String[] args) throws IOException{
+	Scanner sc = new Scanner(System.in);
+	
+	System.out.print("Introduce el nombre del alumno: ");
+		String nombre = sc.nextLine();
+	System.out.println("Introduce la nota del alumno: ");
+		int nota = sc.nextInt();
+		
+	sc.nextLine();
+	
+	String linea = nombre + ": " + nota + "\n"; 
+	
+	System.out.println("----- Elige una opcion -----");
+	System.out.println("Opcion 1.- APPEND");
+	System.out.println("Opcion 2.- CREATE");
+	System.out.println("Opcion 3.- TRUNCATE_EXISTING");
+	int opcion = sc.nextInt();
+	
+	Path ruta = Path.of("alumnos.txt");
+	
+	switch (opcion) {
+	case 1:
+		Files.writeString(ruta, linea, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+		break;
+	case 2:
+		Files.writeString(ruta, linea, StandardOpenOption.CREATE);
+	case 3:
+		Files.writeString(ruta, linea, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+		
+	}System.out.println("Opcion no valida.");
+		sc.close();
+	}
+}

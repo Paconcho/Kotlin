@@ -1,0 +1,23 @@
+package com.json5;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class App01 {
+	private static List<Photo> photos;
+	private static final String DIRECCION = "https://jsonplaceholder.typicode.com/photos";
+
+	public static void main(String[] args) {
+
+		cargarFotos();
+
+	}
+
+	private static void cargarFotos() {
+		photos = new ArrayList<>();
+		
+		try
+		
+	}
+}

@@ -1,0 +1,6 @@
+Monitor, 132,55
+teclado, 14,30
+mouse, 59,84
+pc, 1650,33
+altavoz, 1650,00
+alfombrilla, 23,10

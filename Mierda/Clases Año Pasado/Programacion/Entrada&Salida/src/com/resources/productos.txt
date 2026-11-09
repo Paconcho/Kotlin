@@ -1,0 +1,20 @@
+Monitor, 132,55
+Teclado, 28,59
+Ratón, 16,50
+Portátil, 935,00
+Impresora, 105,33
+Altavoces, 50,05
+Auriculares, 33,00
+Webcam, 44,28
+Disco duro, 66,00
+Memoria USB, 13,75
+Tablet, 231,00
+Smartphone, 769,99
+Cargador, 20,63
+Router, 60,50
+Pantalla LED, 198,00
+Silla oficina, 143,00
+Mesa escritorio, 242,00
+Micrófono, 83,05
+Tarjeta gráfica, 495,00
+Placa base, 165,00
